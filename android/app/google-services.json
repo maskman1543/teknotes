@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "329205810284",
+    "project_id": "teknotes-79764",
+    "storage_bucket": "teknotes-79764.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329205810284:android:6922f6fe5e172df09c4449",
+        "android_client_info": {
+          "package_name": "com.example.teknotes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKfti9OgcnuLWEya-IOutmuOgh-pYTkaY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329205810284:android:a2ec6f2ac694eea79c4449",
+        "android_client_info": {
+          "package_name": "com.example.teknotes_final"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKfti9OgcnuLWEya-IOutmuOgh-pYTkaY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
