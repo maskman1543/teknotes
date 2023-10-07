@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'registerverification.dart';
 
+//Registration UI file
 class SignUpAuthentication extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -29,27 +30,17 @@ class SignUpAuthentication extends StatelessWidget {
               // Sign up button
               ElevatedButton(
                 onPressed: () async {
-                  // Get the user's email and password
-                  String email = _emailController.text;
-                  String password = _passwordController.text;
-
-                  // Try to sign up the user
-                  try {
-                    await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
-
-                    // Send the user an email verification link
-                    await FirebaseAuth.instance.currentUser!.sendEmailVerification();
-
-                    // Show the user a message that they need to verify their email address
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Please verify your email address before continuing.'),
-                      ),
-                    );
-                  } catch (e) {
-                    // If the user fails to sign up, show an error message
-                    print(e.toString());
+                  try{
+                  //Passing of inputs to the function register()
+                  register(_emailController.text, _passwordController.text);
+                  // Show the user a message that they need to verify their email address
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Please verify your email address before continuing.'),
+                    ),
+                  );
                   }
+                  catch (e){}
                 },
                 child: Text('Sign Up'),
               ),
