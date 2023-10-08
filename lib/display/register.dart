@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'registerverification.dart';
+import '../authentication/registerverification.dart';
 
 //Registration UI file
 class SignUpAuthentication extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  SignUpAuthentication({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,19 +32,22 @@ class SignUpAuthentication extends StatelessWidget {
               // Sign up button
               ElevatedButton(
                 onPressed: () async {
+                  String email = _emailController.text;
+                  String password = _passwordController.text;
                   try{
                   //Passing of inputs to the function register()
-                  register(_emailController.text, _passwordController.text);
-                  // Show the user a message that they need to verify their email address
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Please verify your email address before continuing.'),
-                    ),
-                  );
+                  register(email, password);
                   }
                   catch (e){}
                 },
                 child: Text('Sign Up'),
+              ),
+
+              ElevatedButton(
+                  child: const Text('Go back'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    },
               ),
             ],
           ),
