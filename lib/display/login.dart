@@ -2,17 +2,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:teknotes_final/display/home.dart';
 import 'register.dart';
+import 'package:teknotes_final/display/file_list.dart'; // Import the FileListScreen
 
 class SignInPanel extends StatelessWidget {
   const SignInPanel({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home:SignIn());
+    return MaterialApp(home: SignIn());
   }
 }
 
-//Login UI file
 class SignIn extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -43,25 +43,26 @@ class SignIn extends StatelessWidget {
 
               // Sign In button
               ElevatedButton(
-                
                 onPressed: () async {
                   String email = _emailController.text;
                   String password = _passwordController.text;
                   try {
-                    //Passing of inputs to the function login()
-                    
-                    await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
-                    if(FirebaseAuth.instance.currentUser?.emailVerified == true){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const MyApp()),);
+                    // SignIn logic
+                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: email, password: password);
+                    if (FirebaseAuth.instance.currentUser?.emailVerified ==
+                        true) {
+                      // Navigate to the FileListScreen after successful login
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                FileListScreen()), // Navigate to FileListScreen
+                      );
+                    } else {
+                      print('Please verify your account');
                     }
-                    else{
-                      print('secret');
-                    }
-                  } 
-                  
-                  catch (e) {
+                  } catch (e) {
                     print(e);
                   }
                 },
@@ -69,12 +70,14 @@ class SignIn extends StatelessWidget {
               ),
 
               ElevatedButton(
-                  child: const Text('Register'),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignUpAuthentication()),);
-                    },
+                child: const Text('Register'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SignUpAuthentication()),
+                  );
+                },
               ),
             ],
           ),
@@ -83,4 +86,3 @@ class SignIn extends StatelessWidget {
     );
   }
 }
-
